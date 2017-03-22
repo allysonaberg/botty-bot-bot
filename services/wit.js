@@ -82,25 +82,7 @@ var actions = {
 	error(sessionId, context, error) {
 		console.log(error.message)
 	},
-
-	// list of functions Wit.ai can execute
-	['fetch-weather'](sessionId, context, cb) {
-		// Here we can place an API call to a weather service
-		// if (context.loc) {
-		// 	getWeather(context.loc)
-		// 		.then(function (forecast) {
-		// 			context.forecast = forecast || 'sunny'
-		// 		})
-		// 		.catch(function (err) {
-		// 			console.log(err)
-		// 		})
-		// }
-
-		context.forecast = 'Sunny'
-
-		cb(context)
-	},
-
+	//list of functions it can execute
 	['fetch-pics'](sessionId, context, cb) {
 		var wantedPics = allPics[context.cat || 'default']
 		context.pics = wantedPics[Math.floor(Math.random() * wantedPics.length)]
