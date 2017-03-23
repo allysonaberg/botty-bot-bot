@@ -36,7 +36,7 @@ var actions = {
 
 		console.log('WIT WANTS TO TALK TO:', context._fbid_)
 		console.log('WIT HAS SOMETHING TO SAY:', message)
-		console.log('WIT HAS A CONTEXT:', context)
+		console.log('WIT HAS A CONTEXT:', context.loc)
 
 		if (checkURL(message)) {
 			FB.newMessage(context._fbid_, message, true)
