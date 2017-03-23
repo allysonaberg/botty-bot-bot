@@ -92,7 +92,7 @@ var actions = {
 	['fetch-weather'](sessionId, context, cb) {
     // Here should go the api call, e.g.:
     // context.forecast = apiCall(context.loc)
-      weather.now("Toronto",function(err, aData)
+      weather.now(context.loc,function(err, aData)
       { 
           if(err) console.log(err);
           else
