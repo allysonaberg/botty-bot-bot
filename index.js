@@ -11,7 +11,7 @@ var FB = require('./connectors/facebook')
 var Bot = require('./bot')
 
 
-// LETS MAKE A SERVER!
+//server
 var app = express()
 app.set('port', (process.env.PORT) || 5000)
 // SPIN UP SERVER
@@ -45,13 +45,13 @@ app.get('/webhooks', function (req, res) {
 // to send messages to facebook
 app.post('/webhooks', function (req, res) {
   var entry = FB.getMessageEntry(req.body)
-  // IS THE ENTRY A VALID MESSAGE?
+  // checking for a valid message
   if (entry && entry.message) {
     if (entry.message.attachments) {
-      // NOT SMART ENOUGH FOR ATTACHMENTS YET
+      //can't identify attachments yet though
       FB.newMessage(entry.sender.id, "That's interesting!")
     } else {
-      // SEND TO BOT FOR PROCESSING
+      //bot will execute the "read" function
       Bot.read(entry.sender.id, entry.message.text, function (sender, reply) {
         FB.newMessage(sender, reply)
       })
@@ -68,20 +68,20 @@ function sendTextMessage(sender, text) {
     sendRequest(sender, messageData)
 }
 
-function sendWeatherMessage(sender) {
-      weather.now("Toronto",function(err, aData)
-      { 
-          if(err) console.log(err);
-          else
-          {
-              let text =  aData.getDegreeTemp()
-              let min = text.temp_min
-              let max = text.temp_max
-              let message = "Today is a high of " + max + " and a low of " + min + "."
-              sendTextMessage(sender, message)
-          }
-      })
-}
+// function sendWeatherMessage(sender) {
+//       weather.now("Toronto",function(err, aData)
+//       { 
+//           if(err) console.log(err);
+//           else
+//           {
+//               let text =  aData.getDegreeTemp()
+//               let min = text.temp_min
+//               let max = text.temp_max
+//               let message = "Today is a high of " + max + " and a low of " + min + "."
+//               sendTextMessage(sender, message)
+//           }
+//       })
+// }
 
 function sendRequest(sender, messageData) {
 request({

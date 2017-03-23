@@ -90,8 +90,7 @@ var actions = {
 		cb(context)
 	},
 	['fetch-weather'](sessionId, context, cb) {
-    // Here should go the api call, e.g.:
-    // context.forecast = apiCall(context.loc)
+	 //openweather-node api call
       weather.now(context.loc,function(err, aData)
       { 
           if(err) console.log(err);
@@ -109,7 +108,7 @@ var actions = {
   },
 }
 
-// SETUP THE WIT.AI SERVICE
+// setup wit
 var getWit = function () {
 	console.log('GRABBING WIT')
 	return new Wit(Config.WIT_TOKEN, actions)
@@ -127,19 +126,19 @@ if (require.main === module) {
 }
 
 // GET WEATHER FROM API
-var getWeather = function (location) {
-	return new Promise(function (resolve, reject) {
-		var url = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22'+ location +'%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys'
-		request(url, function (error, response, body) {
-		    if (!error && response.statusCode == 200) {
-		    	var jsonData = JSON.parse(body)
-		    	var forecast = jsonData.query.results.channel.item.forecast[0].text
-		      console.log('WEATHER API SAYS....', jsonData.query.results.channel.item.forecast[0].text)
-		      return forecast
-		    }
-			})
-	})
-}
+// var getWeather = function (location) {
+// 	return new Promise(function (resolve, reject) {
+// 		var url = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22'+ location +'%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys'
+// 		request(url, function (error, response, body) {
+// 		    if (!error && response.statusCode == 200) {
+// 		    	var jsonData = JSON.parse(body)
+// 		    	var forecast = jsonData.query.results.channel.item.forecast[0].text
+// 		      console.log('WEATHER API SAYS....', jsonData.query.results.channel.item.forecast[0].text)
+// 		      return forecast
+// 		    }
+// 			})
+// 	})
+// }
 
 // CHECK IF URL IS AN IMAGE FILE
 var checkURL = function (url) {
