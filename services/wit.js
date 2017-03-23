@@ -52,10 +52,10 @@ var actions = {
 	merge(sessionId, context, entities, message, cb) {
 		// Reset the weather story
 		delete context.forecast
-		print("DELETED")
+		console.log("DELETED")
 		// Retrive the location entity and store it in the context field
 		var loc = firstEntityValue(entities, 'location')
-		print("LOCATION: " + loc)
+		console.log("LOCATION: " + loc)
 		if (loc) {
 			context.loc = loc
 		}
