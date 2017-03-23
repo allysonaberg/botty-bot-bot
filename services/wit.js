@@ -100,7 +100,7 @@ var actions = {
               let text =  aData.getDegreeTemp()
               let min = text.temp_min
               let max = text.temp_max
-              let message = "Today is a high of " + max + " and a low of " + min + 
+              let message = "Today is a high of " + max + " and a low of " + min 
               context.forecast = message;
               cb(context);
           }
