@@ -91,7 +91,10 @@ var actions = {
       { 
           if(err) {
           console.log(err);
-          cb("Sorry, I don't understand")
+          let message = "sorry, I don't understand"
+          context.forecast = message
+          cb(context)
+          delete context.forecast
       	}
           else
           {
