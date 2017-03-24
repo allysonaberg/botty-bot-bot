@@ -3,7 +3,7 @@
  'use strict'
 
 var Config = require('./config')
-var wit = require('./services/wit').getWit()
+var wit = require('./wit').getWit()
 const weather = require('openweather-node')
 
 
