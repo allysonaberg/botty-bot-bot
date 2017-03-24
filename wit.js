@@ -28,6 +28,7 @@ var firstEntityValue = function (entities, entity) {
 }
 
 
+//actions, all the things that wit.ai can do
 var actions = {
 	say (sessionId, context, message, cb) {
 		// Bot testing mode, run cb() and return
@@ -35,7 +36,6 @@ var actions = {
 			cb()
 			return
 		}
-
 		console.log('WIT WANTS TO TALK TO:', context._fbid_)
 		console.log('WIT HAS SOMETHING TO SAY:', message)
 		console.log('WIT HAS A CONTEXT:', context.loc)
@@ -45,11 +45,9 @@ var actions = {
 		} else {
 			FB.newMessage(context._fbid_, message)
 		}
-
-		
 		cb()
-		
 	},
+
 
 	merge(sessionId, context, entities, message, cb) {
 		// Reset the weather story
@@ -60,16 +58,13 @@ var actions = {
 		if (loc) {
 			context.loc = loc
 		}
-
 		// Reset the cutepics story
 		delete context.pics
-
 		// Retrieve the category
 		var category = firstEntityValue(entities, 'category')
 		if (category) {
 			context.cat = category
 		}
-
 		// Retrieve the sentiment
 		var sentiment = firstEntityValue(entities, 'sentiment')
 		if (sentiment) {
@@ -77,7 +72,6 @@ var actions = {
 		} else {
 			delete context.ack
 		}
-
 		cb(context)
 	},
 
@@ -91,34 +85,24 @@ var actions = {
 
 		cb(context)
 	},
-	// ['fetch-weather'](sessionId, context, cb) { //cb == callback
-	//  //openweather-node api call
- //      weather.now(context.loc,function(err, aData)
- //      { 
- //          if(err) console.log(err);
- //          else
- //          {
- //              let text =  aData.getDegreeTemp()
- //              let min = text.temp_min
- //              let max = text.temp_max
- //              let message = "Today is a high of " + max + " and a low of " + min 
- //              context.forecast = message;
- //              cb(context);
- //          }
- //      })
+	['fetch-weather'](sessionId, context, cb) { //cb == callback
+	 //openweather-node api call
+      weather.now(context.loc,function(err, aData)
+      { 
+          if(err) console.log(err);
+          else
+          {
+              let text =  aData.getDegreeTemp()
+              let min = text.temp_min
+              let max = text.temp_max
+              let message = "Today is a high of " + max + " and a low of " + min 
+              context.forecast = message;
+              cb(context);
+              delete context.forecast
 
-  //},
-
-  ['fetch-weather'](sessionId, context, cb) {
-      var location = context.loc;
-       context.simplehttp.makeGet("http://api.openweathermap.org/data/2.5/weather?q=" + location + "&APPID=d72d8e533ae9c657e21baee780140f76",null,function(context1,event1){ 
-            var weatherForecast = JSON.parse(event1.getresp);
-           //parse server response JSON  
-            context.forecast = weatherForecast;
-            callback(witContext);  
-     })
-       cb(context);
-   },
+          }
+      })
+  },
 
 }
 
