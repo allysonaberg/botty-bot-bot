@@ -58,6 +58,10 @@ var actions = {
 		if (loc) {
 			context.loc = loc
 		}
+		else {
+			context.weather = 'Sorry, I didnt get that'
+			cb(context)
+		}
 		// Reset the cutepics story
 		delete context.pics
 		// Retrieve the category
