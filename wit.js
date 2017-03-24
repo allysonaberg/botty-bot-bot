@@ -2,7 +2,7 @@
 
 //setting up dependencies
 var Config = require('../config')
-var FB = require('../connectors/facebook')
+var FB = require('../facebook')
 var Wit = require('node-wit').Wit
 var request = require('request')
 const weather = require('openweather-node')

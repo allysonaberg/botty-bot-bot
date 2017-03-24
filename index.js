@@ -1,14 +1,17 @@
 'use strict'
 
+//setting up node_modules
 var express = require('express')
 var bodyParser = require('body-parser')
 var request = require('request')
 var weather = require('openweather-node')
 
 
+//setting up file requirements
 var Config = require('./config')
-var FB = require('./connectors/facebook')
+var FB = require('./facebook')
 var Bot = require('./bot')
+
 
 
 //server
