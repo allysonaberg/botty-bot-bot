@@ -1,18 +1,20 @@
 'use strict'
 
+//setting up dependencies
 var Config = require('../config')
 var FB = require('../connectors/facebook')
 var Wit = require('node-wit').Wit
 var request = require('request')
 const weather = require('openweather-node')
 
-//WEATHER 
+//WEATHER API setup 
 weather.setAPPID("d72d8e533ae9c657e21baee780140f76");
-//set the culture 
 weather.setCulture("en");
-//set the forecast type 
 weather.setForecastType("daily"); //or "" for 3 hours forecast 
 
+
+//a helper function to return the value of the first entity (variable that goes with intent: for weather, entity = TORONTO)
+//called inside merge 
 var firstEntityValue = function (entities, entity) {
 	var val = entities && entities[entity] &&
 		Array.isArray(entities[entity]) &&
@@ -52,9 +54,8 @@ var actions = {
 	merge(sessionId, context, entities, message, cb) {
 		// Reset the weather story
 		delete context.forecast
-		console.log("DELETED")
 		// Retrive the location entity and store it in the context field
-		var loc = firstEntityValue(entities, 'location')
+		var loc = firstEntityValue(entities, 'location') //calls the entity helper function to get location
 		console.log("LOCATION: " + loc)
 		if (loc) {
 			context.loc = loc
@@ -90,23 +91,35 @@ var actions = {
 
 		cb(context)
 	},
-	['fetch-weather'](sessionId, context, cb) {
-	 //openweather-node api call
-      weather.now(context.loc,function(err, aData)
-      { 
-          if(err) console.log(err);
-          else
-          {
-              let text =  aData.getDegreeTemp()
-              let min = text.temp_min
-              let max = text.temp_max
-              let message = "Today is a high of " + max + " and a low of " + min 
-              context.forecast = message;
-              cb(context);
-          }
-      })
+	// ['fetch-weather'](sessionId, context, cb) { //cb == callback
+	//  //openweather-node api call
+ //      weather.now(context.loc,function(err, aData)
+ //      { 
+ //          if(err) console.log(err);
+ //          else
+ //          {
+ //              let text =  aData.getDegreeTemp()
+ //              let min = text.temp_min
+ //              let max = text.temp_max
+ //              let message = "Today is a high of " + max + " and a low of " + min 
+ //              context.forecast = message;
+ //              cb(context);
+ //          }
+ //      })
 
   },
+
+  fetchWeather(sessionId, context, cb) {
+      var location = context.loc;
+       context.simplehttp.makeGet("http://api.openweathermap.org/data/2.5/weather?q=" + location + "&APPID=d72d8e533ae9c657e21baee780140f76",null,function(context1,event1){ 
+            var weatherForecast = JSON.parse(event1.getresp);
+           //parse server response JSON  
+            context.forecast = weatherForecast;
+            callback(witContext);  
+     })
+       cb(context);
+   },
+
 }
 
 // setup wit
