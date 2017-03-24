@@ -109,7 +109,7 @@ var actions = {
 
   },
 
-  fetchWeather(sessionId, context, cb) {
+  ['fetch-weather'](sessionId, context, cb) {
       var location = context.loc;
        context.simplehttp.makeGet("http://api.openweathermap.org/data/2.5/weather?q=" + location + "&APPID=d72d8e533ae9c657e21baee780140f76",null,function(context1,event1){ 
             var weatherForecast = JSON.parse(event1.getresp);
