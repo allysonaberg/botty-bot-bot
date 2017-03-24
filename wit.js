@@ -107,7 +107,7 @@ var actions = {
  //          }
  //      })
 
-  },
+  //},
 
   ['fetch-weather'](sessionId, context, cb) {
       var location = context.loc;
