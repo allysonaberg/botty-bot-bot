@@ -1,10 +1,11 @@
+
 //BOT APP
 'use strict';
 
 // Weather Example
 // See https://wit.ai/sungkim/weather/stories and https://wit.ai/docs/quickstart
 const Wit = require('node-wit').Wit;
-const FB = require('./facebook.js');
+const FB = require('./connectors/facebook');
 const Config = require('./config.js');
 const weather = require('openweather-node')
 
@@ -113,3 +114,6 @@ if (require.main === module) {
   const client = getWit();
   client.interactive();
 }
+
+
+
