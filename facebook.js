@@ -2,7 +2,7 @@
 'use strict'
 
 var request = require('request')
-var Config = require('../config')
+var Config = require('./config')
 
 // SETUP A REQUEST TO FACEBOOK SERVER
 var newRequest = request.defaults({
