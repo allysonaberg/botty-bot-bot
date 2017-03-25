@@ -52,6 +52,7 @@ var read = function (sender, message, reply) {
     message = 'Hello yourself! I am a chat bot. You can say "show me pics of corgis"'
     reply(sender, message)
   } 
+  //YOUTUBE WORKING FOR FIXED KEYWORD SEARCH
   else if (message == 'youtube') {
 
     message = 'searching with keyword "creepypasta"'
