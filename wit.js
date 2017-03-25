@@ -52,9 +52,9 @@ var actions = {
 	merge(sessionId, context, entities, message, cb) {
 		// Reset the weather story
 		delete context.forecast
-		console.log("IN MERGE")
 		// Retrive the location entity and store it in the context field
 		var loc = firstEntityValue(entities, 'location') //calls the entity helper function to get location
+		console.log("LOCATION: " + loc)
 		if (loc) {
 			context.loc = loc
 		}
@@ -91,7 +91,7 @@ var actions = {
 	},
 	['fetch-weather'](sessionId, context, cb) { //cb == callback
 	 //openweather-node api call
-      weather.now(context.loc, function(err, aData)
+      weather.now(context.loc,function(err, aData)
       { 
           if(err) {
           console.log(err);
@@ -112,7 +112,7 @@ var actions = {
 
           }
       })
-  }
+  },
 
 }
 
