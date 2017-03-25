@@ -112,6 +112,7 @@ var actions = {
               context.forecast = message;
               cb(context);
               delete context.forecast
+              delete context.loc
 
           }
       })
