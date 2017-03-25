@@ -91,7 +91,7 @@ var actions = {
 	},
 	['fetch-weather'](sessionId, context, cb) { //cb == callback
 	 //openweather-node api call
-      weather.now(context.loc,function(err, aData)
+      weather.now("Toronto",function(err, aData)
       { 
           if(err) {
           console.log(err);
