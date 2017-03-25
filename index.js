@@ -71,20 +71,6 @@ function sendTextMessage(sender, text) {
     sendRequest(sender, messageData)
 }
 
-// function sendWeatherMessage(sender) {
-//       weather.now("Toronto",function(err, aData)
-//       { 
-//           if(err) console.log(err);
-//           else
-//           {
-//               let text =  aData.getDegreeTemp()
-//               let min = text.temp_min
-//               let max = text.temp_max
-//               let message = "Today is a high of " + max + " and a low of " + min + "."
-//               sendTextMessage(sender, message)
-//           }
-//       })
-// }
 
 function sendRequest(sender, messageData) {
 request({

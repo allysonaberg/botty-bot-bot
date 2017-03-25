@@ -7,6 +7,8 @@ var wit = require('./wit').getWit()
 var weather = require('openweather-node')
 var YouTube = require('youtube-node')
 var youTube = new YouTube()
+var index = require('./index')
+
 youTube.setKey('AIzaSyDxvDFk1sS41kxhWS8YR5etEGlHfkrExrI')
 
 
@@ -55,18 +57,19 @@ var read = function (sender, message, reply) {
   //YOUTUBE WORKING FOR FIXED KEYWORD SEARCH
   else if (message == 'YouTube') {
 
-    message = 'searching with keyword "creepypasta"'
+  message = 'searching with keyword "creepypasta"'
   youTube.search('creepypasta', 2, function(error, result) {
   if (error) {
     console.log(error);
   }
   else {
+
     console.log(JSON.stringify(result, null, 2));
-    //reply(sender, message)
+    index.sendTextMessage(sender, message)
       }
 
     })
-  reply(sender, message)
+  //reply(sender, message)
   }
     else {
     // Let's find the user
