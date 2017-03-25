@@ -52,18 +52,20 @@ var read = function (sender, message, reply) {
     message = 'Hello yourself! I am a chat bot. You can say "show me pics of corgis"'
     reply(sender, message)
   } 
-  else if (message == 'Youtube') {
+  else if (message == 'youtube') {
 
-  message = 'searching with keyword "creepypasta"'
-  youTube.search('creepypasta', 2, function(error, result) {
+    message = 'searching with keyword "creepypasta"'
+  youTube.search('World War z Trailer', 2, function(error, result) {
   if (error) {
     console.log(error);
   }
   else {
     console.log(JSON.stringify(result, null, 2));
+    reply(sender, message)
       }
-          reply(sender, message)
+
     })
+  reply(sender, message)
   }
     else {
     // Let's find the user
