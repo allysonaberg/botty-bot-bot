@@ -87,7 +87,7 @@ request({
         } else if (response.body.error) {
             console.log('Error: ', response.body.error)
         }
-    })
-}
+    }
+})
 
 
