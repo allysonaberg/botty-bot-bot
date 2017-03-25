@@ -61,11 +61,11 @@ var read = function (sender, message, reply) {
   }
   else {
     console.log(JSON.stringify(result, null, 2));
-  }
-
     reply(sender, message)
+    }
 
   }
+}
     else {
     // Let's find the user
     var sessionId = findOrCreateSession(sender)
