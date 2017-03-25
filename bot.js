@@ -5,6 +5,9 @@
 var Config = require('./config')
 var wit = require('./wit').getWit()
 var weather = require('openweather-node')
+var YouTube - require('youtube-node')
+var youTube = new YouTube()
+youTube.setKey('AIzaSyDxvDFk1sS41kxhWS8YR5etEGlHfkrExrI')
 
 
 
@@ -52,6 +55,14 @@ var read = function (sender, message, reply) {
   else if (message == 'youtube') {
 
     message = 'searching with keyword "creepypasta"'
+    youTube.search('creepypasta' 2, function(error, result) {
+      if (error) {
+        console.log(error)
+      }
+      else {
+        console.log(JSON.stringify(result, null, 2))
+      }
+    })
     reply(sender, message)
 
 
