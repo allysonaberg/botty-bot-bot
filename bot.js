@@ -4,7 +4,7 @@
 
 var Config = require('./config')
 var wit = require('./wit').getWit()
-const weather = require('openweather-node')
+var weather = require('openweather-node')
 
 
 //WEATHER 
