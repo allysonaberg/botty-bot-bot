@@ -119,6 +119,7 @@ var actions = {
       // })
 
 	//openweathermap api call
+	console.log("CITY IS: "+ context.loc)
 	weather.setCity(context.loc)
 		let text = weather.getTemperature(function(err, temp) {
 			console.log(temp)
