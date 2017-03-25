@@ -53,7 +53,7 @@ var read = function (sender, message, reply) {
     reply(sender, message)
   } 
   //YOUTUBE WORKING FOR FIXED KEYWORD SEARCH
-  else if (message == 'youtube') {
+  else if (message == 'YouTube') {
 
     message = 'searching with keyword "creepypasta"'
   youTube.search('creepypasta', 2, function(error, result) {
