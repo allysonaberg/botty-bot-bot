@@ -65,11 +65,12 @@ var read = function (sender, message, reply) {
   else {
 
     console.log(JSON.stringify(result, null, 2));
-    sendTextMessage(sender, message)
       }
 
     })
   //reply(sender, message)
+      sendTextMessage(sender, message)
+ 
   }
     else {
     // Let's find the user
