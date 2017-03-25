@@ -5,12 +5,17 @@ var Config = require('./config')
 var FB = require('./facebook')
 var Wit = require('node-wit').Wit
 var request = require('request')
-var weather = require('openweather-node')
+//var weather = require('openweather-node')
+var weather = require('oepnweather-apis')
 
 //WEATHER API setup 
+// weather.setAPPID("d72d8e533ae9c657e21baee780140f76");
+// weather.setCulture("en");
+// weather.setForecastType("daily"); //or "" for 3 hours forecast 
 weather.setAPPID("d72d8e533ae9c657e21baee780140f76");
-weather.setCulture("en");
-weather.setForecastType("daily"); //or "" for 3 hours forecast 
+weather.setLang('en');
+weather.setUnits('metric');
+
 
 
 //a helper function to return the value of the first entity (variable that goes with intent: for weather, entity = TORONTO)
@@ -91,27 +96,36 @@ var actions = {
 	},
 	['fetch-weather'](sessionId, context, cb) { //cb == callback
 	 //openweather-node api call
-      weather.now(context.loc,function(err, aData)
-      { 
-          if(err) {
-          console.log(err);
-          let message = "sorry, I don't understand"
-          context.forecast = message
-          cb(context)
-          delete context.forecast
-      	}
-          else
-          {
-              let text =  aData.getDegreeTemp()
-              let min = text.temp_min
-              let max = text.temp_max
-              let message = "Today is a high of " + max + " and a low of " + min 
-              context.forecast = message;
-              cb(context);
-              delete context.forecast
+      // weather.now(context.loc,function(err, aData)
+      // { 
+      //     if(err) {
+      //     console.log(err);
+      //     let message = "sorry, I don't understand"
+      //     context.forecast = message
+      //     cb(context)
+      //     delete context.forecast
+      // 	}
+      //     else
+      //     {
+      //         let text =  aData.getDegreeTemp()
+      //         let min = text.temp_min
+      //         let max = text.temp_max
+      //         let message = "Today is a high of " + max + " and a low of " + min 
+      //         context.forecast = message;
+      //         cb(context);
+      //         delete context.forecast
 
-          }
-      })
+      //     }
+      // })
+
+	//openweathermap api call
+	weather.setCity(context.loc)
+		let text = weather.getTemperature(function(err, temp) {
+			console.log(temp)
+			context.forecast = "weather is logged"
+			cb(context)
+		})
+
   },
 
 }
