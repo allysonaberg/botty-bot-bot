@@ -75,7 +75,7 @@ global.sendTextMessage = function sendTextMessage(sender, text) {
 function sendRequest(sender, messageData) {
 request({
         url: 'https://graph.facebook.com/v2.6/me/messages',//url to send request to
-        qs: {access_token:FB_VERIFY_TOKEN}, //our given access token
+        qs: {access_token: process.env.FB_PAGE_TOKEN, //our given access token
         method: 'POST', 
         json: { //what will be sent in the request
             recipient: {id: sender},
