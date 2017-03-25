@@ -7,6 +7,7 @@ var wit = require('./wit').getWit()
 var weather = require('openweather-node')
 var YouTube = require('youtube-node')
 var youTube = new YouTube()
+module.exports = index
 var index = require('./index')
 
 youTube.setKey('AIzaSyDxvDFk1sS41kxhWS8YR5etEGlHfkrExrI')

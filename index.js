@@ -5,6 +5,7 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var request = require('request')
 var weather = require('openweather-node')
+module.exports = index
 
 
 //setting up file requirements
