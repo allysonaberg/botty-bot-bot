@@ -55,17 +55,18 @@ var read = function (sender, message, reply) {
   else if (message == 'youtube') {
 
     message = 'searching with keyword "creepypasta"'
-  youTube.search('World War z Trailer', 2, function(error, result) {
-  if (error) {
-    console.log(error);
-  }
-  else {
-    console.log(JSON.stringify(result, null, 2));
-    reply(sender, message)
-    }
+  // youTube.search('World War z Trailer', 2, function(error, result) {
+  // if (error) {
+  //   console.log(error);
+  // }
+  // else {
+  //   console.log(JSON.stringify(result, null, 2));
+  //   reply(sender, message)
+  //     }
 
+  //   }
+  reply(sender, message)
   }
-}
     else {
     // Let's find the user
     var sessionId = findOrCreateSession(sender)
