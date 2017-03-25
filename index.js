@@ -58,9 +58,9 @@ app.post('/webhooks', function (req, res) {
       Bot.read(entry.sender.id, entry.message.text, function (sender, reply) {
         FB.newMessage(sender, reply)
       })
-      Bot.sendTextMessage(entry.sender.id, entry.message.text, function (sender, reply {
+      Bot.sendTextMessage(entry.sender.id, entry.message.text, function (sender, reply) {
         FB.newMessage(sender, reply)
-      }))
+      })
     }
   }
 
