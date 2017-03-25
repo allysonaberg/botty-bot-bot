@@ -9,12 +9,10 @@ var request = require('request')
 var weather = require('openweather-node')
 
 //WEATHER API setup 
-// weather.setAPPID("d72d8e533ae9c657e21baee780140f76");
-// weather.setCulture("en");
-// weather.setForecastType("daily"); //or "" for 3 hours forecast 
 weather.setAPPID("d72d8e533ae9c657e21baee780140f76");
-weather.setLang('en');
-weather.setUnits('metric');
+weather.setCulture("en");
+weather.setForecastType("daily"); //or "" for 3 hours forecast 
+
 
 
 
