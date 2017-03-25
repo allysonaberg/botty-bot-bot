@@ -57,7 +57,6 @@ var actions = {
 		console.log("LOCATION: " + loc)
 		if (loc) {
 			context.loc = loc
-			console.log("LOC = " + context.loc)
 		}
 		else {
 			context.weather = 'Sorry, I didnt get that'
