@@ -55,7 +55,7 @@ var read = function (sender, message, reply) {
   else if (message == 'youtube') {
 
     message = 'searching with keyword "creepypasta"'
-  youTube.search('World War z Trailer', 2, function(error, result) {
+  youTube.search('creepypasta', 2, function(error, result) {
   if (error) {
     console.log(error);
   }
