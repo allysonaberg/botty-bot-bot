@@ -6,7 +6,7 @@ var FB = require('./facebook')
 var Wit = require('node-wit').Wit
 var request = require('request')
 //var weather = require('openweather-node')
-var weather = require('oepnweather-apis')
+var weather = require('openweather-apis')
 
 //WEATHER API setup 
 // weather.setAPPID("d72d8e533ae9c657e21baee780140f76");
