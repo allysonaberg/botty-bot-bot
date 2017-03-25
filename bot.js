@@ -61,9 +61,8 @@ var read = function (sender, message, reply) {
   }
   else {
     console.log(JSON.stringify(result, null, 2));
-    reply(sender, message)
       }
-
+          reply(sender, message)
     })
   }
     else {
