@@ -5,7 +5,7 @@
 var Config = require('./config')
 var wit = require('./wit').getWit()
 var weather = require('openweather-node')
-var YouTube - require('youtube-node')
+var YouTube = require('youtube-node')
 var youTube = new YouTube()
 youTube.setKey('AIzaSyDxvDFk1sS41kxhWS8YR5etEGlHfkrExrI')
 
