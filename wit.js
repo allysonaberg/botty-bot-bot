@@ -55,7 +55,6 @@ var actions = {
 		console.log("IN MERGE")
 		// Retrive the location entity and store it in the context field
 		var loc = firstEntityValue(entities, 'location') //calls the entity helper function to get location
-		console.log("LOCATION: " + loc)
 		if (loc) {
 			context.loc = loc
 		}
@@ -113,7 +112,7 @@ var actions = {
 
           }
       })
-  },
+  }
 
 }
 
