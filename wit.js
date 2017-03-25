@@ -90,7 +90,7 @@ var actions = {
 
 		cb(context)
 	},
-	getWeather(sessionId, context, cb) { //cb == callback
+	['fetch-weather'](sessionId, context, cb) { //cb == callback
 	 //openweather-node api call
       weather.now(context.loc,function(err, aData)
       { 
