@@ -62,11 +62,12 @@ var read = function (sender, message, reply) {
   }
   else {
     console.log(JSON.stringify(result, null, 2));
-    reply(sender, message)
+    //reply(sender, message)
       }
 
     })
-  reply(sender, message)
+  //reply(sender, message)
+  sendTextMessage(sender, message)
   }
     else {
     // Let's find the user
@@ -103,4 +104,63 @@ var read = function (sender, message, reply) {
 module.exports = {
   findOrCreateSession: findOrCreateSession,
   read: read,
+}
+
+
+
+
+
+/*** sending stuff ***/
+
+// for facebook to verify
+app.get('/webhooks', function (req, res) {
+  if (req.query['hub.verify_token'] === Config.FB_VERIFY_TOKEN) {
+    res.send(req.query['hub.challenge'])
+  }
+  res.send('Error, wrong token')
+})
+
+// to send messages to facebook
+app.post('/webhooks', function (req, res) {
+  var entry = FB.getMessageEntry(req.body)
+  // checking for a valid message
+  if (entry && entry.message) {
+    if (entry.message.attachments) {
+      //can't identify attachments yet though
+      FB.newMessage(entry.sender.id, "That's interesting!")
+    } else {
+      //bot will execute the "read" function
+      Bot.read(entry.sender.id, entry.message.text, function (sender, reply) {
+        FB.newMessage(sender, reply)
+      })
+    }
+  }
+
+  res.sendStatus(200)
+})
+
+//send text function
+function sendTextMessage(sender, text) {
+    let messageData = { text:text } //message data is a variable that holds the text
+    //setting up our requet query
+    sendRequest(sender, messageData)
+}
+
+
+function sendRequest(sender, messageData) {
+request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',//url to send request to
+        qs: {access_token:FB_VERIFY_TOKEN}, //our given access token
+        method: 'POST', 
+        json: { //what will be sent in the request
+            recipient: {id: sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
 }
