@@ -13,6 +13,10 @@ weather.setAPPID("d72d8e533ae9c657e21baee780140f76");
 weather.setCulture("en");
 weather.setForecastType("daily"); //or "" for 3 hours forecast 
 
+var YouTube = require('youtube-node')
+var youTube = new YouTube()
+youTube.setKey('AIzaSyDxvDFk1sS41kxhWS8YR5etEGlHfkrExrI')
+
 
 
 
