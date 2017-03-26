@@ -53,16 +53,15 @@ var read = function (sender, message, reply) {
     reply(sender, message)
   } 
   //YOUTUBE WORKING FOR FIXED KEYWORD SEARCH
-  else if (message == 'Youtube') {
+  // else if (message == 'Youtube') {
 
-    message = 'searching with keyword "creepypasta"'
-  youTube.search('creepypasta', 2, function(error, result) {
-  if (error) {
-    console.log(error);
-  }
+  //   message = 'searching with keyword "creepypasta"'
+  // youTube.search('creepypasta', 2, function(error, result) {
+  // if (error) {
+  //   console.log(error);
+  // }
   else {
     console.log(JSON.stringify(result, null, 2));
-    reply(sender, message)
       }
 
     })

@@ -52,6 +52,7 @@ var actions = {
 	},
 
 
+	//extracts the entity and saves it in the context object
 	merge(sessionId, context, entities, message, cb) {
 		// Reset the weather story
 		delete context.forecast
@@ -79,6 +80,12 @@ var actions = {
 		} else {
 			delete context.ack
 		}
+
+		var youtubeSearch = firstEntityValue(entities, 'youtubeSearch')
+		console.log("KEYWORD: " + youtubeSearch)
+			if ('youtubeSearch') {
+				context.keyword = 'youtubeSearch'
+			}
 		cb(context)
 	},
 
@@ -116,15 +123,19 @@ var actions = {
           }
       })
 
-	//openweathermap api call
-	// console.log("CITY IS: "+ context.loc)
-	// weather.setCity(context.loc)
-	// 	let text = weather.getTemperature(function(err, temp) {
-	// 		console.log(temp)
-	// 		context.forecast = "weather is logged"
-	// 		cb(context)
-	// 	})
+  },
 
+  ['youtube-search'](sessionId, context, cb) {
+  youTube.search(context.keyword, 2, function(error, result) {
+  	if (error) {
+    	console.log(error);
+  	}
+  	else {
+    context.searchresult = (JSON.stringify(result, null, 2));
+    cb(context)
+      }
+
+    }))
   },
 
 }
