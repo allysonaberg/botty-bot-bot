@@ -67,7 +67,7 @@ app.post('/webhooks', function (req, res) {
   res.sendStatus(200)
 })
 
-send text function
+//send text function
 global.sendTextMessage = function sendTextMessage(sender, text) {
     let messageData = { text:text } //message data is a variable that holds the text
     //setting up our request query
