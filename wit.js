@@ -135,7 +135,7 @@ var actions = {
     cb(context)
       }
 
-    }))
+    })
   },
 
 }
