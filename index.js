@@ -67,49 +67,49 @@ app.post('/webhooks', function (req, res) {
   res.sendStatus(200)
 })
 
-//send text function
-// global.sendTextMessage = function sendTextMessage(sender, text) {
-//     let messageData = { text:text } //message data is a variable that holds the text
-//     //setting up our request query
-//     sendRequest(sender, messageData)
-// }
-
-
-// function sendRequest(sender, messageData) {
-// request({
-//         url: 'https://graph.facebook.com/v2.6/me/messages',//url to send request to
-//         qs: {access_token: process.env.FB_PAGE_TOKEN}, //our given access token
-//         method: 'POST', 
-//         json: { //what will be sent in the request
-//             recipient: {id: sender},
-//             message: messageData,
-//         }
-//     }, function(error, response, body) {
-//         if (error) {
-//             console.log('Error sending messages: ', error)
-//         } else if (response.body.error) {
-//             console.log('Error: ', response.body.error)
-//         }
-//     }) 
-// }
-
+send text function
 global.sendTextMessage = function sendTextMessage(sender, text) {
-    let messageData = { text:text }
-    request({
-      url: 'https://graph.facebook.com/v2.6/me/messages',
-      qs: {access_token:process.env.FB_PAGE_TOKEN},
-      method: 'POST',
-    json: {
-        recipient: {id:sender},
-      message: messageData,
-    }
-  }, function(error, response, body) {
-    if (error) {
-        console.log('Error sending messages: ', error)
-    } else if (response.body.error) {
-        console.log('Error: ', response.body.error)
-      }
-    })
+    let messageData = { text:text } //message data is a variable that holds the text
+    //setting up our request query
+    sendRequest(sender, messageData)
 }
+
+
+function sendRequest(sender, messageData) {
+request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',//url to send request to
+        qs: {access_token: process.env.FB_PAGE_TOKEN}, //our given access token
+        method: 'POST', 
+        json: { //what will be sent in the request
+            recipient: {id: sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    }) 
+}
+
+// global.sendTextMessage = function sendTextMessage(sender, text) {
+//     let messageData = { text:text }
+//     request({
+//       url: 'https://graph.facebook.com/v2.6/me/messages',
+//       qs: {access_token:process.env.FB_PAGE_TOKEN},
+//       method: 'POST',
+//     json: {
+//         recipient: {id:sender},
+//       message: messageData,
+//     }
+//   }, function(error, response, body) {
+//     if (error) {
+//         console.log('Error sending messages: ', error)
+//     } else if (response.body.error) {
+//         console.log('Error: ', response.body.error)
+//       }
+//     })
+// }
 
 
