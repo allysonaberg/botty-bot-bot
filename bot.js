@@ -60,13 +60,13 @@ var read = function (sender, message, reply) {
   // if (error) {
   //   console.log(error);
   // }
-  else {
-    console.log(JSON.stringify(result, null, 2));
-      }
+  // else {
+  //   console.log(JSON.stringify(result, null, 2));
+  //     }
 
-    })
-  reply(sender, message)
-  }
+  //   })
+  // reply(sender, message)
+  // }
     else {
     // Let's find the user
     var sessionId = findOrCreateSession(sender)
