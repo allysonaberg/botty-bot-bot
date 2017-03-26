@@ -2,6 +2,13 @@
 
  'use strict'
 
+//added in
+var express = require('express')
+var bodyParser = require('body-parser')
+var request = require('request')
+var weather = require('openweather-node')
+
+
 var Config = require('./config')
 var wit = require('./wit').getWit()
 var weather = require('openweather-node')
@@ -9,7 +16,7 @@ var YouTube = require('youtube-node')
 var youTube = new YouTube()
 youTube.setKey('AIzaSyDxvDFk1sS41kxhWS8YR5etEGlHfkrExrI')
 
-//server
+//server ADDED IN
 var app = express()
 app.set('port', (process.env.PORT) || 5000)
 // SPIN UP SERVER
