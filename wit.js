@@ -137,6 +137,7 @@ var actions = {
   	else {
     context.searchresult = (JSON.stringify(result, null, 2));
     cb(context)
+    reply(context.searchresult)
       }
 
     })
