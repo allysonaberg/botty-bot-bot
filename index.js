@@ -58,9 +58,6 @@ app.post('/webhooks', function (req, res) {
       Bot.read(entry.sender.id, entry.message.text, function (sender, reply) {
         FB.newMessage(sender, reply)
       })
-      // Bot.sendTextMessage(entry.sender.id, entry.message.text, function (sender, reply) {
-      //   FB.newMessage(sender, reply)
-      // })
     }
   }
 
@@ -68,17 +65,31 @@ app.post('/webhooks', function (req, res) {
 })
 
 //send text function
-global.sendTextMessage = function sendTextMessage(sender, text) {
+function sendTextMessage(sender, text) {
     let messageData = { text:text } //message data is a variable that holds the text
-    //setting up our request query
+    //setting up our requet query
     sendRequest(sender, messageData)
 }
 
+// function sendWeatherMessage(sender) {
+//       weather.now("Toronto",function(err, aData)
+//       { 
+//           if(err) console.log(err);
+//           else
+//           {
+//               let text =  aData.getDegreeTemp()
+//               let min = text.temp_min
+//               let max = text.temp_max
+//               let message = "Today is a high of " + max + " and a low of " + min + "."
+//               sendTextMessage(sender, message)
+//           }
+//       })
+// }
 
 function sendRequest(sender, messageData) {
 request({
         url: 'https://graph.facebook.com/v2.6/me/messages',//url to send request to
-        qs: {access_token: process.env.FB_PAGE_TOKEN}, //our given access token
+        qs: {access_token:token}, //our given access token
         method: 'POST', 
         json: { //what will be sent in the request
             recipient: {id: sender},
@@ -90,26 +101,5 @@ request({
         } else if (response.body.error) {
             console.log('Error: ', response.body.error)
         }
-    }) 
+    })
 }
-
-// global.sendTextMessage = function sendTextMessage(sender, text) {
-//     let messageData = { text:text }
-//     request({
-//       url: 'https://graph.facebook.com/v2.6/me/messages',
-//       qs: {access_token:process.env.FB_PAGE_TOKEN},
-//       method: 'POST',
-//     json: {
-//         recipient: {id:sender},
-//       message: messageData,
-//     }
-//   }, function(error, response, body) {
-//     if (error) {
-//         console.log('Error sending messages: ', error)
-//     } else if (response.body.error) {
-//         console.log('Error: ', response.body.error)
-//       }
-//     })
-// }
-
-
