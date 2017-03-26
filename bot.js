@@ -2,13 +2,6 @@
 
  'use strict'
 
-//added in
-var express = require('express')
-var bodyParser = require('body-parser')
-var request = require('request')
-var weather = require('openweather-node')
-
-
 var Config = require('./config')
 var wit = require('./wit').getWit()
 var weather = require('openweather-node')
@@ -16,13 +9,6 @@ var YouTube = require('youtube-node')
 var youTube = new YouTube()
 youTube.setKey('AIzaSyDxvDFk1sS41kxhWS8YR5etEGlHfkrExrI')
 
-//server ADDED IN
-var app = express()
-app.set('port', (process.env.PORT) || 5000)
-// SPIN UP SERVER
-app.listen(app.get('port'), function () {
-  console.log('Running on port', app.get('port'))
-})
 
 
 //WEATHER 
@@ -123,8 +109,46 @@ module.exports = {
 
 
 
+/****** ADDED IN ******/
 
-/*** sending stuff ***/
+'use strict'
+
+//setting up node_modules
+var express = require('express')
+var bodyParser = require('body-parser')
+var request = require('request')
+var weather = require('openweather-node')
+
+
+//setting up file requirements
+var Config = require('./config')
+var FB = require('./facebook')
+var Bot = require('./bot')
+
+
+
+//server
+var app = express()
+app.set('port', (process.env.PORT) || 5000)
+// SPIN UP SERVER
+app.listen(app.get('port'), function () {
+  console.log('Running on port', app.get('port'))
+})
+// PARSE THE BODY
+app.use(bodyParser.json())
+
+//WEATHER 
+weather.setAPPID("d72d8e533ae9c657e21baee780140f76");
+//set the culture 
+weather.setCulture("en");
+//set the forecast type 
+weather.setForecastType("daily"); //or "" for 3 hours forecast 
+
+
+// index page
+app.get('/', function (req, res) {
+  res.send('hello world i am a chat bot')
+})
 
 // for facebook to verify
 app.get('/webhooks', function (req, res) {
@@ -164,7 +188,7 @@ function sendTextMessage(sender, text) {
 function sendRequest(sender, messageData) {
 request({
         url: 'https://graph.facebook.com/v2.6/me/messages',//url to send request to
-        qs: {access_token:FB_VERIFY_TOKEN}, //our given access token
+        qs: {access_token:token}, //our given access token
         method: 'POST', 
         json: { //what will be sent in the request
             recipient: {id: sender},
