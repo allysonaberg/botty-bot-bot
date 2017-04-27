@@ -1,4 +1,2 @@
 # botty-bot-bot
-smol bot
-dis a bot
-more soon
+First chatbot, lots of experimentation with Natural Language Understanding/Processing via Wit.ai and weather APIs
